@@ -24,7 +24,6 @@ int min_cost_memo(int** input, int si, int sj, int ei, int ej, vector<vector<int
     if(si == ei && sj == ej){
         return input[ei][ej];
     }
-
     //* whene bound breached 
     if(si > ei || sj> ej){
         return INT_MAX;
