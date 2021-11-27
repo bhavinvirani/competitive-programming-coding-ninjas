@@ -24,9 +24,9 @@ Constriants:
 Sample Input :
 1
 3 11
-5 1 3 4 5 1 5 5 3 3 2 
-5 8 2 10 1 9 8 4 4 3 4 
-15 6 9 2 7 1 3 13 7 7 5 
+5 1 3 4 5 1 5 5 3 3 2
+5 8 2 10 1 9 8 4 4 3 4
+15 6 9 2 7 1 3 13 7 7 5
 1
 1 3
 Sample Output :
@@ -35,16 +35,83 @@ Yes */
 #include <bits/stdc++.h>
 using namespace std;
 
-
-int main() {
+int main()
+{
     freopen("/home/spy/Desktop/input.txt", "r", stdin);
     freopen("/home/spy/Desktop/output.txt", "w", stdout);
+
     int t;
     cin >> t;
-    
-    while(t--)
+
+    while (t--)
     {
-        
+        int row, col;
+        cin >> row >> col;
+        int arr[row][col];
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                cin >> arr[i][j];
+            }
+        }
+
+        int dp[row][col];
+        //* first ros is 0
+        for(int i = 0; i < col; i++){
+            dp[0][i] = 0;
+        }
+
+        //* maintains from which column it is ascending order
+        for (int i = 1; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                if (arr[i][j] > arr[i - 1][j])
+                {
+                    dp[i][j] = dp[i - 1][j];
+                }
+                else
+                {
+                    dp[i][j] = i;
+                }
+            }
+        }
+
+        // for (int i = 0; i < row; i++)
+        // {
+        //     for (int j = 0; j < col; j++)
+        //     {
+        //         cout << dp[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+
+        int query;
+        cin >> query;
+        while (query--)
+        {
+            int l, r;
+            cin >> l >> r;
+            int minimum = INT_MAX;
+            
+            //* find minimum in r row (ending is in r row)
+            for (int i = 0; i < col; i++)
+            {
+                minimum = min(minimum, dp[r - 1][i]);
+            }
+            // cout << l << " " << r << " = " << minimum << "  ";
+
+            //* is minimum is higher than L then it is not true
+            if (minimum > (l - 1))
+            {
+                cout << "No" << endl;
+            }
+            else
+            {
+                cout << "Yes" << endl;
+            }
+        }
     }
     return 0;
 }
