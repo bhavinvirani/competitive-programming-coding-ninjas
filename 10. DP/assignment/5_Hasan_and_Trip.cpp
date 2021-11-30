@@ -34,6 +34,7 @@ struct city{
 };
 
 double distance(city a, city b){
+    //* method to find distance between two elements 
 	double ans = 0;
 	long long X = (long long)pow(a.x-b.x, 2);
 	long long Y = (long long)pow(a.y-b.y, 2);
@@ -56,8 +57,8 @@ double solve(vector<city> cities, int n){
             //* find max from previous visted cities
 			tmp = max(tmp, dp[j] + cities[i].happiness - distance(cities[i], cities[j]));
 		}
+        //* add maximum happiness for that city
         dp[i] = tmp;
-
     }
     return dp[n-1];
     

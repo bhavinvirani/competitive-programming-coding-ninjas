@@ -15,14 +15,14 @@ int magic_grid(vector<vector<int>> grid, int si, int sj, int row, int col)
         return INT_MAX;
     }
 
-    // right call
+    //* right call
     int right = magic_grid(grid, si, sj + 1, row, col);
     if (right != INT_MAX)
     {
         right -= grid[si][sj + 1];
     }
 
-    // down call
+    //* down call
     int down = magic_grid(grid, si + 1, sj, row, col);
     if (down != INT_MAX)
     {
@@ -109,7 +109,7 @@ int magic_grid_dp(vector<vector<int>> grid, int row, int col)
     int dp[row][col];
     
     //* how much depth at that position
-    //* abs() + 1;
+    //* abs() + 1 (minimum 1 life required)
     for(int i = row-1; i >=0; i--){
         for(int j = col-1; j >= 0; j--){
 

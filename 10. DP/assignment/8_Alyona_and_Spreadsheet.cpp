@@ -57,7 +57,7 @@ int main()
         }
 
         int dp[row][col];
-        //* first ros is 0
+        //* first row with 0s
         for(int i = 0; i < col; i++){
             dp[0][i] = 0;
         }

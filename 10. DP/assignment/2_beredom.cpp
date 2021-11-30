@@ -39,10 +39,10 @@ int max_points(int arr[], int n)
     for (int i = 2; i <= 1000; i++)
     {
         //* for any digit the are two choices
-        //* take or not the
-        //* last answer or current frequency * current + dp[i-2]
+        //* take or not
+        //* last answer or (current frequency of that element * current + dp[i-2])
         dp[i] = max(dp[i-1], dp[i-2] + (i * feq[i]) );
-    }
+    }0
     return dp[1000];
 }
 

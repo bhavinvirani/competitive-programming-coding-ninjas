@@ -3,6 +3,7 @@ using namespace std;
 
 
 int min_cost(int** input, int si, int sj, int ei, int ej) {
+    //* target reached
     if(si == ei && sj == ej){
         return input[ei][ej];
     }
@@ -12,6 +13,7 @@ int min_cost(int** input, int si, int sj, int ei, int ej) {
         return INT_MAX;
     }
 
+    //* function call in all thre directions
     int option1 = min_cost(input, si + 1, sj, ei, ej);
     int option2 = min_cost(input, si, sj + 1, ei, ej);
     int option3 = min_cost(input, si + 1, sj + 1, ei, ej);
@@ -45,15 +47,19 @@ int min_cost_iter(int** input, int row, int col) {
 
     vector<vector<int>> dp(row, vector<int>(col));
 
+    //* target element
     dp[row-1][col-1] = input[row-1][col-1];
 
+    //* last column cost (current row + next row)
     for(int i = row-2; i >= 0; i--) {
         dp[i][col-1] = input[i][col -1] + dp[i + 1][col - 1];
     }
+    //* last row
     for(int i = col-2; i >= 0; i--) {
         dp[row-1][i] = input[row-1][i] + dp[row-1][i + 1];
     }
 
+    //* current cost + minimum of all three cost
     for(int i = row-2; i >= 0; i--) {
         for(int j = col-2; j >= 0; j--) {
             dp[i][j] = input[i][j] + min(dp[i+1][j], min(dp[i+1][j+1], dp[i][j+1]));

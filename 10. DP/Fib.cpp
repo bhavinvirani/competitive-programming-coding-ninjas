@@ -29,6 +29,7 @@ int fib3(int n){
     int memo[n];
     memo[0] = 1;
     memo[1] = 1;
+    //* sum of previous 2 elements sum
     for(int i = 2; i <= n; i++){
         memo[i] = memo[i-1] + memo[i-2];
     }

@@ -35,7 +35,7 @@ int num_codes_i(int* arr, int size){
 
     for (int i = 2; i <= size; i++)
     {
-        //* first combination
+        //* first combination ()
         output[i] = output[i - 1];
 
         //* second combination

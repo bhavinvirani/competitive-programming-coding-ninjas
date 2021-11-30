@@ -9,7 +9,9 @@ long count_array(int n, int k, int x){
 
     for(int i = 1; i < n; i++){
         long preOneCount = oneCount;
+        //* previous position filld with nonOne [x,x,1,nonOneCount * (k-1)]
         oneCount = nonOneCount * (k-1);
+        //* previous position filld with 1 or any k number [x,x, 1 / k, oneCount + nonOneCount* (k-1)]
         nonOneCount = preOneCount + (nonOneCount * (k-2));
     }
 
@@ -32,8 +34,8 @@ int main() {
     int n,k,x;
     cin >> n >> k >> x;
 
-    //* 1st element must be 1st
-    //* last element must be xor
+    //* 1st element must be 1
+    //* last element must be x
     //* all elements must be between 1 to k (inclusive);
 
     cout << count_array(n,k,x) << endl;

@@ -37,6 +37,7 @@ int solve(int arr[], int n)
     int dp[n];
     dp[0] = 1;
 
+    //* left to right
     for (int i = 1; i < n; i++)
     {
         if (arr[i] > arr[i - 1])
@@ -49,13 +50,14 @@ int solve(int arr[], int n)
         }
     }
     //* check from both th sides
+    //* right to left
     for(int i = n - 2; i >= 0; i--){
         if(arr[i] > arr[i + 1] && dp[i] <= dp[i + 1]){
             dp[i] = dp[i + 1] + 1;
         }
     }
 
-
+    //* total sum
     int ans = 0;
     for (auto i : dp)
     {

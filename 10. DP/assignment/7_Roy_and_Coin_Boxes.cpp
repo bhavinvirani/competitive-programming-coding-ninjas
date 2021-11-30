@@ -37,6 +37,8 @@ Sample Output
 0
 4 */
 
+//? give answer in O(1) time
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -65,7 +67,7 @@ int main()
         cin >> n >> days;
         int boxes[n + 1] = {0};
 
-        // maintains the start and end indexes
+        //* maintains the start and end indexes
         int start[n+1] = {0};
         int end[n+1] = {0};
         for (int i = 0; i < days; i++)
@@ -89,7 +91,7 @@ int main()
         }
 
         //* atlest
-        //* left sum
+        //* left to right sum
         for(int i = n-1; i >= 0; i--){
             coins[i] += coins[i+1];
         }

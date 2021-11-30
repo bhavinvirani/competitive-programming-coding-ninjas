@@ -8,14 +8,17 @@ int LIS(vector<int> input, int n) {
     for(int i = 1; i < n; i++) {
         output[i] = 1;
         int x = i - 1;
+
         while(x >= 0){
 
-            //* previous number is larger then current number
+            //* previous x number is larger then current number can not be add
             if(input[x] > input[i] ){
                 x--;
                 continue;
             }
-            //* possibleAns = output[x] + 1;
+            //? LIC from x to i
+            //* if x is amaller then we can add i next to x so, op[x] + 1;
+            //* possibleAns = output[x] + 1; 
             output[i] = max(output[i], output[x] + 1);
             x--;
         }

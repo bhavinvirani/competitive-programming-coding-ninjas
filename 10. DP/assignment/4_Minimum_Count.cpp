@@ -82,16 +82,16 @@ int solve_dp(int n){
 
     // return dp[n];
 
-    int dp[n+1];
+    int dp[n+1];gg
     dp[0] = 0;
     dp[1] = 1;
-    // to fill all positions
+
+    //* to fill all positions
     for(int i = 2; i <= n; i++){
         dp[i] = INT_MAX;  //* initially max value
         
         //* run till 1 to root of i
         for(int j = 1; i-(j*j) >= 0; j++){
-
             //* current root value is min or not
             dp[i] = min(dp[i], dp[i - (j*j)]);
         }

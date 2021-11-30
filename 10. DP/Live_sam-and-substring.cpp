@@ -19,7 +19,7 @@ int main() {
 
     int ans[len];
     int lastVal = arr[0];
-    ans[0] = arr[0];
+    ans[0] = arr[0]; //* base case (only one substring)
 
     //? (last combination sum * 10) + (currntval * it's position)
     /* 
@@ -31,6 +31,7 @@ int main() {
     
     for(int i = 1; i < len; i++){
         int preSum = ans[i-1];
+        
         int lastSum = lastVal * 10 + ((arr[i]) * (i + 1));
         lastVal = lastSum;
         ans[i] = lastSum + preSum;
@@ -39,8 +40,5 @@ int main() {
     for(int i = 0; i < len; i++){
         cout << ans[i] << " ";
     }
-
-
-
     return 0;
 }

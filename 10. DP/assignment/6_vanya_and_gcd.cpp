@@ -30,21 +30,23 @@ int solve(vector<int> vec)
 
     vector<vector<int>> dp(n, vector<int>(101, 0));
     
-    //* whene only one element thne GCD is 1
+    //* whene only one element then GCD is that number itself
     dp[0][vec[0]] = 1;
 
     //* to fill dp 
     for(int i = 1; i < n; i++){
         //* compare previous GCDs
+        //* i-1 to 0
         for (int j = i-1; j >= 0; j--)
         {
-            //* when first condition fullfill
-            if(vec[i] > vec[j]){
+            if(vec[i] > vec[j]){ //* when first condition
 
                 for(int k = 1; k < 101; k++){
                     //* take gcd of current number with 1 to 100
                     //* all possible gcd
                     int new_gcd = __gcd(k, vec[i]);
+
+                    //* jth number with curent gcd(k)
                     //* add gcd of dp[j] with the k
                     dp[i][new_gcd] = (dp[i][new_gcd] +  dp[j][k]) % MOD;
                 }

@@ -46,10 +46,13 @@ From all the possible seven ways, the second option yields the maximum loot amou
 using namespace std;
 
 int max_loot_dp(vector<int> house, int n)
-{
+{   
+    //* only one house
     if(n == 1){
         return house[0];
     }
+
+    //* only two house
     if(n == 2){
         return max(house[0], house[1]);
     }
@@ -58,7 +61,6 @@ int max_loot_dp(vector<int> house, int n)
     dp[0] = house[0];
     dp[1] = max(house[0], house[1]);
 
-
     //* either take current position or not
     /* if take current position then (current position) + (i-2)*/
     /* else (i-1) position */
@@ -66,7 +68,6 @@ int max_loot_dp(vector<int> house, int n)
     for(int i = 2; i < n; i++){
         dp[i] = max(house[i] + dp[i - 2], dp[i - 1]);
     }
-
 
     // for (int i = 0; i < n; i++)
     // {
@@ -88,8 +89,6 @@ int max_loot_memo(vector<int> house, int i, int n, vector<int> memo)
     memo[i] = smallAns;
     return smallAns;
 }
-
-
 
 
 int main()
