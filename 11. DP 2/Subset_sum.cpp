@@ -1,4 +1,4 @@
-/* Subset Sum - Problem
+    /* Subset Sum - Problem
 Send Feedback
 Given an array of n integers, find if a subset of sum k can be formed from the given set. Print Yes or No.
 Input Format
