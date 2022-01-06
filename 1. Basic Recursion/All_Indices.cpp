@@ -25,6 +25,8 @@ int allIndexes(int input[], int size, int x, int output[]) {
 // 8
 
 int main(){
+    freopen("/home/spy/Desktop/input.txt", "r", stdin);
+    freopen("/home/spy/Desktop/output.txt", "w", stdout);
     int n;
     cin >> n;
   
