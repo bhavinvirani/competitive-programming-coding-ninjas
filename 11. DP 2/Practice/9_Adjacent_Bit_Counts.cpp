@@ -4,17 +4,18 @@ using namespace std;
 
 int solve(int n, int k, int start, int dp[][101][2])
 {
-    //* only 1 element
-    if (n == 0)
+    //* if only 1 element
+    if (n == 1)
     {
-        //* no need of consecutive bit so atles 1 (even only one element)
+        //* and no consecutive bit (no matter 1 element is 0 or 1)
         if (k == 0)
         {
             return 1;
         }
         return 0;
     }
-    //* 
+
+    //* k can not be less then 0
     if (k < 0)
     {
         return 0;
