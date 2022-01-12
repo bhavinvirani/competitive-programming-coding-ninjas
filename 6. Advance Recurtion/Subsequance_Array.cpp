@@ -76,7 +76,7 @@ int solve(vector<int> arr, int n)
     {
         for (int j = i + 1; j < n; j++)
         {
-            int diff = arr[j] - arr[igit];
+            int diff = arr[j] - arr[i];
             /*
                 [3,6,9,12]
                 6-3 => 3
