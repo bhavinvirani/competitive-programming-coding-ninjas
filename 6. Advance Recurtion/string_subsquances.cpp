@@ -9,10 +9,13 @@ int subs(string str, string ans[]){
     }
 
     string smallstring = str.substr(1);
+
+    //* exclude 
     int smallOutputSize = subs(smallstring, ans);
 
     for (int i = 0; i < smallOutputSize; i++)
     {
+        //* current first char + all previos charectors of array
         ans[i + smallOutputSize] = str[0] + ans[i];  
     }
     
