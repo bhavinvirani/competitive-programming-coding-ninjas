@@ -18,17 +18,18 @@ ll solve(string a, string b, string c, int index, int z ,ll dp[][55][55])
         return 0;
     }
 
-    if (dp[a.length()][b.length()][c.length()] != -1)
+    if (dp[a.length()][b.length()][z] != -1)
     {
-        return (dp[a.length()][b.length()][c.length()]) % MOD;
+        return (dp[a.length()][b.length()][z]) % MOD;
     }
 
-    int ways = 0;
+    ll ways = 0;
     for (int i = 0; i < a.length(); i++)
     {
         if (a[i] == c[index])
         {
             ways += (solve(a.substr(i + 1), b, c, index + 1, z-1,dp)) % MOD;
+            ways %= MOD;
         }
     }
     for (int i = 0; i < b.length(); i++)
@@ -36,6 +37,7 @@ ll solve(string a, string b, string c, int index, int z ,ll dp[][55][55])
         if (b[i] == c[index])
         {
             ways += (solve(a, b.substr(i + 1), c, index + 1, z-1,dp)) % MOD;
+            ways %= MOD;
         }
     }
     dp[a.length()][b.length()][z] = (ways %MOD);
