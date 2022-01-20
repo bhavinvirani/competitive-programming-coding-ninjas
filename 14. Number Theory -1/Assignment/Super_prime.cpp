@@ -29,7 +29,7 @@ int superPrime(int n)
     {
         if (primes[i])
         {
-            for (int j = i * 2; j <= n; j+=i)
+            for (int j = i * 2; j <= n; j += i)
             {
                 primeCount[j]++;
             }
@@ -37,8 +37,10 @@ int superPrime(int n)
     }
 
     int count = 0;
-    for(auto i : primeCount){
-        if(i == 2){
+    for (auto i : primeCount)
+    {
+        if (i == 2)
+        {
             count++;
         }
     }

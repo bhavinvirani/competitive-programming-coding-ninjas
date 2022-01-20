@@ -54,7 +54,7 @@ int specialPrime(int n)
     //     }
     // }
 
-    int sums[n+1] = {0};
+    int sums[n + 1] = {0};
     int index = 0;
 
     for (int i = 2; i <= n; i++)
@@ -68,7 +68,7 @@ int specialPrime(int n)
     }
 
     for (int i = 1; i <= n; i++)
-    {   
+    {
         //* if any prime[] == sum + 1 and that sum + 1 <= n
         if (primes[sums[i] + 1] == true && sums[i] + 1 <= n)
         {
