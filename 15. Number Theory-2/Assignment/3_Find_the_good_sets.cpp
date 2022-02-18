@@ -34,10 +34,12 @@ using namespace std;
 #define MOD 1000000007
 typedef long long ll;
 
+
 ll solve(int n, int arr[])
 {
     sort(arr, arr + n);
 
+    //* largest number + 1 size array
     ll ans[arr[n - 1] + 1] = {0};
 
     for (int i = 0; i < n; i++)

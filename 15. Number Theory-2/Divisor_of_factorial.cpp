@@ -11,7 +11,7 @@ vector<int> sieve()
 {
     bool isPrime[MAX];
 
-    vector<int> primes ;
+    vector<int> primes;
     for (int i = 2; i <= MAX; i++)
     {
         isPrime[i] = true;

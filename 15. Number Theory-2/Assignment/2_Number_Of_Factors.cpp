@@ -35,6 +35,7 @@ void getFactorCount(int arr[])
         arr[i]++;
     }
 
+    //* i+=2 => even numbers are not prime 
     for (int i = 3; i <= MAX; i += 2)
     {
         if (arr[i] == 0)

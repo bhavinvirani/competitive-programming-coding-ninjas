@@ -1,50 +1,111 @@
-/* Card Game
-Send Feedback
-Vova again tries to play some computer card game.
-The rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number ai is written on the i-th card in the deck.
-After receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.
-Vova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?
-Input
-The first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).
-
-The second line contains n integers a1, a2, ..., an (1 ≤ ai ≤ 10^9) — the numbers written on the cards.
-Output
-Print the number of ways to choose x and y so the resulting deck is valid.
-Sample Input 1
-3 4
-6 2 8
-Sample Output 1
-4
-Sample Input 2
-3 6
-9 1 14
-Sample Output 2
-1
- */
 #include <bits/stdc++.h>
 using namespace std;
-#define MOD 1000000007
-typedef long long ll;
 
-ll solve(int arr[], int n, int k){
+map<int, int> returnPrimeFactors(long k)
+{
+    map<int, int> primeFactors;
+    while (k % 2 == 0)
+    {
+        primeFactors[2]++;
+        k /= 2;
+    }
 
+    for (int i = 3; i <= sqrt(k); i++)
+    {
+        while (k % i == 0)
+        {
+            primeFactors[i]++;
+            k /= i;
+        }
+    }
+
+    if (k > 2)
+        primeFactors[k]++;
+
+    return primeFactors;
+}
+long long countWaysK(vector<long> arr, long n, long k)
+{
+    map<int, int> primeFactorsK = returnPrimeFactors(k);
+    map<int, int> primeFactorsA;
+    vector<bool> visited(n);
+
+    long i = 0, j = 0, s = 0;
+    long ans = 0;
+    while (i < n && j < n)
+    {
+        // cout<<"\nj "<<j<<" i "<<i;
+        int flag = 0;
+        for (auto it : primeFactorsK)
+        {
+            int p = it.first;
+            int count = 0;
+            long val = arr[j];
+            while (val % p == 0)
+            {
+                count++;
+                val /= p;
+            }
+            if (!visited[j])
+                primeFactorsA[p] += count;
+            // cout<<"\nFact: "<<primeFactorsA[p]<<" "<<it.second;
+            if (primeFactorsA[p] < it.second)
+            {
+                // cout<<"\nFlagged"<<arr[j];
+                flag = 1;
+            }
+        }
+
+        if (!flag)
+        {
+            // cout<<"\nNot Flag: "<<arr[j];
+            ans += (n - j);
+            s = i;
+            visited[j] = true;
+            // cout<<"\nAns: "<<ans;
+            i++;
+            int m = i - 1;
+            while (m >= s)
+            {
+                int flag = 0;
+                for (auto it : primeFactorsK)
+                {
+                    int p = it.first;
+                    int count = 0;
+                    long val = arr[m];
+                    while (val % p == 0)
+                    {
+                        count++;
+                        val /= p;
+                    }
+                    primeFactorsA[p] -= count;
+                    // cout<<"\nRem "<<arr[m]<<" "<<primeFactorsA[p]<<" "<<it.second;
+                    if (primeFactorsA[p] < it.second)
+                    {
+                        flag = 1;
+                    }
+                }
+                if (flag)
+                    break;
+                m--;
+            }
+        }
+        else
+            j++;
+    }
+    return ans;
 }
 
-int main() {
+int main()
+{
     freopen("/home/spy/Desktop/input.txt", "r", stdin);
     freopen("/home/spy/Desktop/output.txt", "w", stdout);
-    int t;
-    cin >> t;
-    
-    while(t--)
-    {
-       int n,k;
-       cin >> n >> k;
-       int arr[n];
-       for(int i=0; i<n; i++){
-           cin >> arr[i];
-       }
-       cout << solve(arr, n, k) << endl;
-    }
-    return 0;
+    long n, k, i, j;
+    cin >> n >> k;
+
+    vector<long> arr(n);
+    for (i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cout << countWaysK(arr, n, k) << endl;
 }
