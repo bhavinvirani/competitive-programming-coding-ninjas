@@ -11,16 +11,16 @@ int main()
     {
         int n;
         cin >> n;
-        vector<pair<int, int>> a(n);
+        vector<pair<int, int>> arr(n);
         for (int i = 0; i < n; ++i)
         {
-            cin >> a[i].first >> a[i].second;
+            cin >> arr[i].first >> arr[i].second;
         }
 
         vector<pair<int, int>> v;
         for (int i = 1; i < n; ++i)
         {
-            int pts = min(a[i].first, a[i - 1].second) - min(a[0].first, a[n - 1].second);
+            int pts = min(arr[i].first, arr[i - 1].second) - min(arr[0].first, arr[n - 1].second);
             v.push_back({pts, i});
         }
         sort(v.begin(), v.end());
@@ -35,12 +35,12 @@ int main()
 
         for (int i = 0; i < n; ++i)
         {
-            ans += a[index].first;
-            int damage = a[index].second;
+            ans += arr[index].first;
+            int damage = arr[index].second;
 
             index = (n + index + 1) % n;
 
-            a[index].first = max(0, a[index].first - damage);
+            arr[index].first = max(0, arr[index].first - damage);
         }
         cout << ans << '\n';
     }

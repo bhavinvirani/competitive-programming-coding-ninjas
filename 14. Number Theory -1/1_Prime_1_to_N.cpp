@@ -91,8 +91,8 @@ int main()
         // cout << checkPrime(n) << endl;
         // cout << isPrime(n) << endl;
 
-        // int count = countPrime(n);
-        // cout << count << endl;
+        int count = countPrime(n);
+        cout << count << endl;
     }
     return 0;
 }
